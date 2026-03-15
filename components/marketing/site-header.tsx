@@ -50,13 +50,13 @@ export function SiteHeader({
       className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl"
     >
       <div className="flex h-18 w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-10 2xl:px-14">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan/20 bg-cyan-dim text-cyan shadow-[0_12px_30px_-18px_var(--color-cyan)]">
-            <Shield className="h-5 w-5" />
+        <Link href="/" className="flex items-center gap-3 group hover:opacity-80 transition-opacity">
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl border-2 border-cyan/30 bg-cyan-dim/50 text-cyan shadow-premium-sm group-hover:shadow-premium group-hover:border-cyan/50 transition-all">
+            <Shield className="h-6 w-6" />
           </span>
-          <span className="space-y-0.5">
-            <span className="block text-lg font-semibold tracking-tight">Fireblocks</span>
-            <span className="block text-xs text-muted-foreground">
+          <span className="space-y-1">
+            <span className="block text-lg font-bold tracking-tight">Fireblocks</span>
+            <span className="block text-xs font-medium text-muted-foreground">
               Institutional digital asset operations
             </span>
           </span>
@@ -70,10 +70,10 @@ export function SiteHeader({
                   <Link
                     href={item.href}
                     className={cn(
-                      'rounded-full px-4 py-2 text-sm font-medium transition-colors',
+                      'rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300',
                       pathname === item.href
-                        ? 'bg-cyan-dim text-cyan'
-                        : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
+                        ? 'bg-cyan-dim/50 text-cyan border border-cyan/30 shadow-premium-sm'
+                        : 'text-muted-foreground hover:bg-secondary/80 hover:text-foreground border border-transparent',
                     )}
                   >
                     {item.label}
@@ -84,17 +84,17 @@ export function SiteHeader({
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <ThemeToggle />
           {!isAuthenticated ? (
-            <Button asChild variant="ghost" className="rounded-full">
+            <Button asChild variant="ghost" className="rounded-full px-5 font-semibold hover:bg-secondary/80">
               <Link href="/login">Sign in</Link>
             </Button>
           ) : null}
-          <Button asChild className="rounded-full px-5">
+          <Button asChild className="rounded-full px-6 h-11 font-semibold shadow-premium hover:shadow-premium-lg hover-lift">
             <Link href={primaryHref}>
               {isAuthenticated ? 'Open Dashboard' : 'Get Started'}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-5 w-5 ml-2" />
             </Link>
           </Button>
         </div>
@@ -118,10 +118,10 @@ export function SiteHeader({
                     <Link
                       href={item.href}
                       className={cn(
-                        'rounded-2xl border px-4 py-3 text-sm font-medium transition-colors',
+                        'rounded-xl border px-5 py-3 text-sm font-semibold transition-all',
                         pathname === item.href
-                          ? 'border-cyan/30 bg-cyan-dim text-cyan'
-                          : 'border-border/60 bg-card/70 hover:bg-secondary',
+                          ? 'border-cyan/30 bg-cyan-dim/50 text-cyan shadow-premium-sm'
+                          : 'border-border/60 bg-card/70 hover:bg-secondary/80 hover:border-border',
                       )}
                     >
                       {item.label}
@@ -132,7 +132,7 @@ export function SiteHeader({
                   <SheetClose asChild>
                     <Link
                       href="/login"
-                      className="rounded-2xl border border-border/60 px-4 py-3 text-sm font-medium"
+                      className="rounded-xl border border-border/60 px-5 py-3 text-sm font-semibold hover:bg-secondary/80 transition-all"
                     >
                       Sign in
                     </Link>
@@ -141,7 +141,7 @@ export function SiteHeader({
                 <SheetClose asChild>
                   <Link
                     href={primaryHref}
-                    className="rounded-2xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground"
+                    className="rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-premium hover:shadow-premium-lg transition-all"
                   >
                     {isAuthenticated ? 'Open Dashboard' : 'Get Started'}
                   </Link>

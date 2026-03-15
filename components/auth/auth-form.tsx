@@ -117,131 +117,135 @@ export function AuthForm({ mode }: AuthFormProps) {
         <ThemeToggle />
       </div>
 
-      <div className="relative grid w-full max-w-6xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <section className="hidden overflow-hidden rounded-[32px] border border-border bg-card/82 p-10 backdrop-blur-md lg:block">
-          <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-text-muted">{copy.eyebrow}</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-text-primary">
-              Institutional-grade digital asset operations, without a dark-only UI.
-            </h1>
-            <p className="mt-4 text-base leading-7 text-text-muted">
-              Supabase authentication, seeded vault data, approval workflows, compliance records,
-              API keys, and webhook infrastructure are provisioned behind this workspace.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-4">
-            <div className="rounded-2xl border border-border bg-background/80 p-5">
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="mt-0.5 h-5 w-5 text-emerald" />
-                <div>
-                  <p className="font-medium text-text-primary">Tenant bootstrap</p>
-                  <p className="mt-1 text-sm text-text-muted">
-                    New sign-ups create an organization, admin profile, demo vaults, transactions,
-                    compliance posture, keys, and webhook endpoints.
-                  </p>
-                </div>
-              </div>
+      <div className="relative grid w-full max-w-6xl gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <section className="hidden overflow-hidden rounded-3xl border border-border/60 bg-card/60 backdrop-blur-sm p-12 shadow-premium lg:block">
+          <div className="max-w-xl space-y-8">
+            <div className="space-y-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-cyan">{copy.eyebrow}</p>
+              <h1 className="text-5xl font-bold tracking-tight leading-[1.1]">
+                Institutional-grade digital asset operations, without a dark-only UI.
+              </h1>
+              <p className="text-base leading-7 text-muted-foreground">
+                Supabase authentication, seeded vault data, approval workflows, compliance records,
+                API keys, and webhook infrastructure are provisioned behind this workspace.
+              </p>
             </div>
-            <div className="rounded-2xl border border-border bg-background/80 p-5">
-              <div className="flex items-start gap-3">
-                <KeyRound className="mt-0.5 h-5 w-5 text-cyan" />
-                <div>
-                  <p className="font-medium text-text-primary">Supabase-backed access</p>
-                  <p className="mt-1 text-sm text-text-muted">
-                    Email/password auth, SSR session handling, role-aware API routes, and protected
-                    dashboard navigation are all wired to the backend layer.
-                  </p>
+
+            <div className="grid gap-5 pt-4">
+              <motion.div whileHover={{ y: -2 }} className="group rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-6 shadow-premium-sm hover:shadow-premium hover:bg-background/90 transition-all hover-lift">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-emerald/30 bg-emerald-dim/50 text-emerald flex-shrink-0">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-foreground">Tenant bootstrap</p>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      New sign-ups create an organization, admin profile, demo vaults, transactions,
+                      compliance posture, keys, and webhook endpoints.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
+              <motion.div whileHover={{ y: -2 }} className="group rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-6 shadow-premium-sm hover:shadow-premium hover:bg-background/90 transition-all hover-lift">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-cyan/30 bg-cyan-dim/50 text-cyan flex-shrink-0">
+                    <KeyRound className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-foreground">Supabase-backed access</p>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      Email/password auth, SSR session handling, role-aware API routes, and protected
+                      dashboard navigation are all wired to the backend layer.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        <Card className="border-border bg-card/94 shadow-[0_30px_80px_-30px_color-mix(in_oklab,var(--cyan)_22%,transparent)]">
-          <CardHeader className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-text-muted">{copy.eyebrow}</p>
-                <CardTitle className="mt-3 text-2xl">{copy.title}</CardTitle>
-              </div>
+        <Card className="border-border/60 bg-card/70 backdrop-blur-sm shadow-premium-lg">
+          <CardHeader className="space-y-6 pb-6">
+            <div className="space-y-3">
+              <p className="text-xs font-bold uppercase tracking-widest text-cyan">{copy.eyebrow}</p>
+              <CardTitle className="text-3xl font-bold">{copy.title}</CardTitle>
             </div>
-            <CardDescription className="text-sm leading-6">{copy.description}</CardDescription>
-            <div className="flex items-start gap-3 rounded-2xl border border-cyan/15 bg-cyan-dim/10 px-4 py-3">
-              <ShieldCheck className="mt-0.5 h-4 w-4 text-cyan" />
+            <p className="text-base leading-7 text-muted-foreground">{copy.description}</p>
+            <div className="flex items-start gap-3 rounded-2xl border border-cyan/20 bg-cyan-dim/10 px-4 py-4 mt-2">
+              <ShieldCheck className="mt-0.5 h-5 w-5 text-cyan flex-shrink-0" />
               <div>
-                <p className="text-sm font-medium text-text-primary">Secure session handling</p>
-                <p className="text-xs leading-5 text-text-muted">
+                <p className="font-semibold text-foreground">Secure session handling</p>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">
                   Supabase-authenticated sessions, SSR protection, and role-aware tenant access.
                 </p>
               </div>
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-5">
+          <CardContent className="space-y-6">
             {mode === 'signup' && (
               <>
-                <div className="space-y-2">
-                  <Label htmlFor="full-name">Full name</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="full-name" className="font-semibold">Full name</Label>
                   <Input
                     id="full-name"
                     value={fullName}
                     onChange={(event) => setFullName(event.target.value)}
                     placeholder="Alexandra Chen"
-                    className="h-11 bg-background"
+                    className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="organization-name">Organization</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="organization-name" className="font-semibold">Organization</Label>
                   <Input
                     id="organization-name"
                     value={organizationName}
                     onChange={(event) => setOrganizationName(event.target.value)}
                     placeholder="Fireblocks Capital Markets"
-                    className="h-11 bg-background"
+                    className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all"
                   />
                 </div>
               </>
             )}
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Work email</Label>
+            <div className="space-y-3">
+              <Label htmlFor="email" className="font-semibold">Work email</Label>
               <Input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="you@institution.com"
-                className="h-11 bg-background"
+                className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-3">
+              <Label htmlFor="password" className="font-semibold">Password</Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="Use a strong passphrase"
-                className="h-11 bg-background"
+                className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all"
               />
             </div>
 
-            <div className="rounded-2xl border border-amber/30 bg-amber-dim px-4 py-3 text-sm text-amber">
+            <div className="rounded-xl border border-amber/30 bg-amber-dim/20 px-4 py-4 text-sm text-amber font-medium">
               Failed login protection and account lockout are enforced at the backend layer.
             </div>
 
             {error && (
-              <div className="rounded-2xl border border-crimson/30 bg-crimson-dim px-4 py-3 text-sm text-crimson">
+              <div className="rounded-xl border border-crimson/30 bg-crimson-dim/20 px-4 py-4 text-sm text-crimson font-medium">
                 {error}
               </div>
             )}
 
             {message && (
-              <div className="rounded-2xl border border-emerald/30 bg-emerald-dim px-4 py-3 text-sm text-emerald">
-                <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4" />
+              <div className="rounded-xl border border-emerald/30 bg-emerald-dim/20 px-4 py-4 text-sm text-emerald font-medium">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0" />
                   <span>{message}</span>
                 </div>
               </div>
@@ -256,15 +260,15 @@ export function AuthForm({ mode }: AuthFormProps) {
                 !password.trim() ||
                 (mode === 'signup' && (!fullName.trim() || !organizationName.trim()))
               }
-              className="h-11 w-full bg-cyan text-obsidian hover:bg-cyan/90"
+              className="h-12 w-full bg-cyan text-obsidian font-semibold hover:bg-cyan/90 rounded-lg shadow-premium hover:shadow-premium-lg transition-all hover-lift"
             >
               {isPending ? 'Working...' : copy.submit}
-              {!isPending && <ArrowRight className="h-4 w-4" />}
+              {!isPending && <ArrowRight className="h-5 w-5 ml-2" />}
             </Button>
 
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-text-muted">{copy.switchLabel}</span>
-              <Link href={copy.switchHref} className="font-medium text-cyan hover:text-cyan/80">
+            <div className="flex items-center justify-between text-sm pt-2">
+              <span className="text-muted-foreground">{copy.switchLabel}</span>
+              <Link href={copy.switchHref} className="font-semibold text-cyan hover:text-cyan/80 transition-colors">
                 {copy.switchCta}
               </Link>
             </div>

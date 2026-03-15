@@ -247,22 +247,25 @@ export function SetupForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,var(--cyan-dim),transparent_28%),radial-gradient(circle_at_90%_10%,var(--emerald-dim),transparent_18%),linear-gradient(180deg,color-mix(in_oklab,var(--background)_92%,white_8%),var(--background))] px-4 py-8 sm:px-6 lg:px-10">
-      <div className="mx-auto grid max-w-[1500px] gap-8 xl:grid-cols-[0.88fr_1.12fr]">
-        <section className="space-y-6 xl:sticky xl:top-8 xl:self-start">
-          <Badge className="w-fit bg-cyan-dim text-cyan">Workspace onboarding</Badge>
-          <div className="space-y-4">
-            <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,var(--cyan-dim),transparent_28%),radial-gradient(circle_at_90%_10%,var(--emerald-dim),transparent_18%),linear-gradient(180deg,color-mix(in_oklab,var(--background)_92%,white_8%),var(--background))] px-4 py-12 sm:px-6 lg:px-10">
+      <div className="mx-auto grid max-w-[1500px] gap-10 xl:grid-cols-[0.88fr_1.12fr]">
+        <section className="space-y-8 xl:sticky xl:top-12 xl:self-start">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-cyan-dim/20 px-4 py-2 w-fit font-semibold text-cyan text-sm">
+            <Globe2 className="h-4 w-4" />
+            Workspace onboarding
+          </div>
+          <div className="space-y-5">
+            <h1 className="max-w-2xl text-5xl sm:text-6xl font-bold tracking-tight leading-[1.1]">
               Configure your Fireblocks tenant before access is unlocked
             </h1>
-            <p className="max-w-2xl text-base leading-8 text-text-muted sm:text-lg">
+            <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
               Add the organization profile, assign operating contacts, choose the subscription plan,
               and continue to Stripe Checkout. Payment details stay entirely on Stripe.
             </p>
           </div>
 
-          <Card className="overflow-hidden border-border bg-card/90">
-            <CardContent className="grid gap-6 p-6">
+          <div className="overflow-hidden rounded-3xl border border-border/60 bg-card/60 backdrop-blur-sm p-8 shadow-premium">
+            <div className="grid gap-6">
               <div className="grid gap-4 sm:grid-cols-3">
                 {[
                   {
@@ -281,50 +284,56 @@ export function SetupForm() {
                     body: 'Select the plan here, then finish subscription setup on hosted Stripe pages.',
                   },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-border bg-background/70 p-4">
-                    <item.icon className="h-5 w-5 text-cyan" />
-                    <p className="mt-4 text-sm font-semibold text-text-primary">{item.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-text-muted">{item.body}</p>
-                  </div>
+                  <motion.div key={item.title} whileHover={{ y: -2 }} className="group rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-5 shadow-premium-sm hover:shadow-premium hover:bg-background/90 transition-all hover-lift">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-cyan/30 bg-cyan-dim/50 text-cyan">
+                      <item.icon className="h-5 w-5" />
+                    </div>
+                    <p className="mt-4 font-bold text-foreground">{item.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.body}</p>
+                  </motion.div>
                 ))}
               </div>
 
-              <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-                <div className="rounded-3xl border border-border bg-background/75 p-5">
-                  <div className="flex items-center gap-2 text-sm font-medium text-text-primary">
-                    <ShieldCheck className="h-4 w-4 text-cyan" />
-                    Setup readiness
+              <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+                <motion.div whileHover={{ y: -2 }} className="group rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-6 shadow-premium-sm hover:shadow-premium hover:bg-background/90 transition-all hover-lift">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-cyan/30 bg-cyan-dim/50 text-cyan">
+                      <ShieldCheck className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-bold text-foreground">Setup readiness</h3>
                   </div>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-5 space-y-3">
                     {completionItems.map((item) => (
                       <div
                         key={item.label}
-                        className="flex items-center justify-between rounded-2xl border border-border bg-card/70 px-4 py-3"
+                        className="flex items-center justify-between rounded-xl border border-border/40 bg-card/50 px-4 py-3 transition-all"
                       >
-                        <span className="text-sm text-text-primary">{item.label}</span>
-                        <span className="text-xs font-medium text-text-muted">{item.value}</span>
+                        <span className="text-sm font-medium text-foreground">{item.label}</span>
+                        <span className="text-xs font-bold text-cyan">{item.value}</span>
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="rounded-3xl border border-cyan/15 bg-cyan-dim/10 p-5">
-                  <div className="flex items-center gap-2 text-sm font-medium text-text-primary">
-                    <CreditCard className="h-4 w-4 text-cyan" />
-                    Hosted billing
+                <motion.div whileHover={{ y: -2 }} className="group rounded-2xl border border-cyan/20 bg-cyan-dim/10 backdrop-blur-sm p-6 shadow-premium-sm hover:shadow-premium hover:bg-cyan-dim/15 transition-all hover-lift">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-cyan/30 bg-cyan-dim/50 text-cyan">
+                      <CreditCard className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-bold text-foreground">Hosted billing</h3>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-text-muted">
+                  <p className="mt-5 text-sm leading-6 text-muted-foreground">
                     The app stores only synced customer and subscription identifiers. Card entry,
                     payment method updates, and invoices stay on Stripe-hosted surfaces.
                   </p>
-                  <div className="mt-4 flex items-center gap-2 text-sm text-text-primary">
-                    <CheckCircle2 className="h-4 w-4 text-emerald" />
-                    No custom card form in-app
+                  <div className="mt-5 flex items-center gap-3 rounded-xl border border-emerald/20 bg-emerald-dim/10 px-4 py-3">
+                    <CheckCircle2 className="h-5 w-5 text-emerald flex-shrink-0" />
+                    <span className="font-semibold text-foreground">No custom card form in-app</span>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {searchParams.get('checkout') === 'cancelled' ? (
             <div className="rounded-2xl border border-amber/30 bg-amber-dim px-4 py-3 text-sm text-amber">
@@ -340,59 +349,59 @@ export function SetupForm() {
           ) : null}
         </section>
 
-        <Card className="border-border bg-card/94 shadow-[0_24px_80px_-30px_color-mix(in_oklab,var(--cyan)_24%,transparent)]">
-          <CardHeader className="space-y-4 border-b border-border/80 pb-6">
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-medium text-cyan">
-                  <Landmark className="h-4 w-4" />
+        <div className="rounded-3xl border border-border/60 bg-card/70 backdrop-blur-sm shadow-premium-lg overflow-hidden">
+          <div className="space-y-6 border-b border-border/40 p-8">
+            <div className="flex items-start justify-between gap-6">
+              <div className="space-y-4 flex-1">
+                <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-cyan">
+                  <Landmark className="h-5 w-5" />
                   Organization onboarding
                 </div>
-                <CardTitle className="text-2xl">Set up the account owner workspace</CardTitle>
-                <CardDescription className="max-w-2xl text-sm leading-6">
+                <h2 className="text-3xl font-bold">Set up the account owner workspace</h2>
+                <p className="max-w-2xl text-base leading-7 text-muted-foreground">
                   This record becomes the source of truth for tenant identity, billing contacts,
                   policy context, and access gating.
-                </CardDescription>
+                </p>
               </div>
-              <div className="hidden rounded-2xl border border-border bg-background/70 px-4 py-3 text-right lg:block">
-                <p className="text-xs uppercase tracking-[0.18em] text-text-muted">Selected plan</p>
-                <p className="mt-1 text-base font-semibold text-text-primary">
+              <div className="hidden rounded-xl border border-border/60 bg-background/70 backdrop-blur-sm px-5 py-4 text-right lg:block shadow-premium-sm">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Selected plan</p>
+                <p className="mt-2 text-xl font-bold text-foreground">
                   {selectedPlanRecord?.name ?? 'Starter'}
                 </p>
-                <p className="text-xs text-text-muted">
+                <p className="mt-1 text-sm text-muted-foreground font-medium">
                   {billingInterval === 'annual' ? 'Annual' : 'Monthly'} billing
                 </p>
               </div>
             </div>
-          </CardHeader>
+          </div>
 
-          <CardContent className="space-y-8 p-6">
-            <section className="space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-dim/20 text-cyan">
-                  <Building2 className="h-5 w-5" />
+          <div className="space-y-8 p-8">
+            <section className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-cyan/30 bg-cyan-dim/50 text-cyan">
+                  <Building2 className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-text-primary">Business profile</h2>
-                  <p className="text-sm text-text-muted">
+                  <h3 className="text-xl font-bold text-foreground">Business profile</h3>
+                  <p className="text-sm text-muted-foreground">
                     Core identity and registration data for the organization tenant.
                   </p>
                 </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label>Organization name</Label>
-                  <Input value={organizationName} onChange={(event) => setOrganizationName(event.target.value)} className="h-11 bg-background" />
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="space-y-3">
+                  <Label className="font-semibold">Organization name</Label>
+                  <Input value={organizationName} onChange={(event) => setOrganizationName(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Legal name</Label>
-                  <Input value={legalName} onChange={(event) => setLegalName(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Legal name</Label>
+                  <Input value={legalName} onChange={(event) => setLegalName(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Business type</Label>
+                <div className="space-y-3">
+                  <Label className="font-semibold">Business type</Label>
                   <Select value={businessType} onValueChange={setBusinessType}>
-                    <SelectTrigger className="h-11 bg-background">
+                    <SelectTrigger className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all">
                       <SelectValue placeholder="Select business type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -404,108 +413,108 @@ export function SetupForm() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="space-y-2">
-                  <Label>Registration country</Label>
-                  <Input value={registrationCountry} onChange={(event) => setRegistrationCountry(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Registration country</Label>
+                  <Input value={registrationCountry} onChange={(event) => setRegistrationCountry(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Registration number</Label>
-                  <Input value={registrationNumber} onChange={(event) => setRegistrationNumber(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Registration number</Label>
+                  <Input value={registrationNumber} onChange={(event) => setRegistrationNumber(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Tax ID</Label>
-                  <Input value={taxId} onChange={(event) => setTaxId(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Tax ID</Label>
+                  <Input value={taxId} onChange={(event) => setTaxId(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Website</Label>
-                  <Input value={website} onChange={(event) => setWebsite(event.target.value)} className="h-11 bg-background" placeholder="https://company.com" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Website</Label>
+                  <Input value={website} onChange={(event) => setWebsite(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" placeholder="https://company.com" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Phone</Label>
-                  <Input value={phone} onChange={(event) => setPhone(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Phone</Label>
+                  <Input value={phone} onChange={(event) => setPhone(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
               </div>
             </section>
 
-            <section className="space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-dim/20 text-emerald">
-                  <Mail className="h-5 w-5" />
+            <section className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-emerald/30 bg-emerald-dim/50 text-emerald">
+                  <Mail className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-text-primary">Operating contacts</h2>
-                  <p className="text-sm text-text-muted">
+                  <h3 className="text-xl font-bold text-foreground">Operating contacts</h3>
+                  <p className="text-sm text-muted-foreground">
                     These contacts are used for billing, compliance coordination, and operational workflows.
                   </p>
                 </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-3">
-                <div className="space-y-2">
-                  <Label>Billing email</Label>
-                  <Input value={billingEmail} onChange={(event) => setBillingEmail(event.target.value)} className="h-11 bg-background" />
+              <div className="grid gap-5 md:grid-cols-3">
+                <div className="space-y-3">
+                  <Label className="font-semibold">Billing email</Label>
+                  <Input value={billingEmail} onChange={(event) => setBillingEmail(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Operations email</Label>
-                  <Input value={operationsEmail} onChange={(event) => setOperationsEmail(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Operations email</Label>
+                  <Input value={operationsEmail} onChange={(event) => setOperationsEmail(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Compliance email</Label>
-                  <Input value={complianceEmail} onChange={(event) => setComplianceEmail(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Compliance email</Label>
+                  <Input value={complianceEmail} onChange={(event) => setComplianceEmail(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
               </div>
             </section>
 
-            <section className="space-y-5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-dim/20 text-amber">
-                  <MapPin className="h-5 w-5" />
+            <section className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-amber/30 bg-amber-dim/50 text-amber">
+                  <MapPin className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-text-primary">Registered address</h2>
-                  <p className="text-sm text-text-muted">
+                  <h3 className="text-xl font-bold text-foreground">Registered address</h3>
+                  <p className="text-sm text-muted-foreground">
                     Jurisdiction and address details feed the tenant profile and reporting context.
                   </p>
                 </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Address line 1</Label>
-                  <Input value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} className="h-11 bg-background" />
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="space-y-3 md:col-span-2">
+                  <Label className="font-semibold">Address line 1</Label>
+                  <Input value={addressLine1} onChange={(event) => setAddressLine1(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Address line 2</Label>
-                  <Input value={addressLine2} onChange={(event) => setAddressLine2(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3 md:col-span-2">
+                  <Label className="font-semibold">Address line 2</Label>
+                  <Input value={addressLine2} onChange={(event) => setAddressLine2(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>City</Label>
-                  <Input value={city} onChange={(event) => setCity(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">City</Label>
+                  <Input value={city} onChange={(event) => setCity(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>State / Region</Label>
-                  <Input value={stateRegion} onChange={(event) => setStateRegion(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">State / Region</Label>
+                  <Input value={stateRegion} onChange={(event) => setStateRegion(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Postal code</Label>
-                  <Input value={postalCode} onChange={(event) => setPostalCode(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Postal code</Label>
+                  <Input value={postalCode} onChange={(event) => setPostalCode(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Country</Label>
-                  <Input value={country} onChange={(event) => setCountry(event.target.value)} className="h-11 bg-background" />
+                <div className="space-y-3">
+                  <Label className="font-semibold">Country</Label>
+                  <Input value={country} onChange={(event) => setCountry(event.target.value)} className="h-12 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all" />
                 </div>
               </div>
             </section>
 
-            <section className="space-y-5">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-dim/20 text-cyan">
-                    <Globe2 className="h-5 w-5" />
+            <section className="space-y-6">
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg border-2 border-cyan/30 bg-cyan-dim/50 text-cyan">
+                    <Globe2 className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-text-primary">Subscription plan</h2>
-                    <p className="text-sm text-text-muted">
+                    <h3 className="text-xl font-bold text-foreground">Subscription plan</h3>
+                    <p className="text-sm text-muted-foreground">
                       Choose a package here and continue to Stripe to complete billing.
                     </p>
                   </div>
@@ -514,7 +523,7 @@ export function SetupForm() {
                   value={normalizeBillingInterval(billingInterval)}
                   onValueChange={(value) => setBillingInterval(normalizeBillingInterval(value as OrganizationProfile['billing_interval']))}
                 >
-                  <SelectTrigger className="h-11 w-40 bg-background">
+                  <SelectTrigger className="h-12 w-44 bg-background/70 border-border/60 rounded-lg shadow-premium-sm focus:shadow-premium focus:border-cyan/50 transition-all">
                     <SelectValue placeholder="Monthly" />
                   </SelectTrigger>
                   <SelectContent>
@@ -524,85 +533,86 @@ export function SetupForm() {
                 </Select>
               </div>
 
-              <div className="grid gap-4 lg:grid-cols-3">
+              <div className="grid gap-6 lg:grid-cols-3">
                 {plans.map((plan) => {
                   const isActive = selectedPlan === plan.code
                   const price = billingInterval === 'annual' ? plan.annual_price_usd : plan.monthly_price_usd
 
                   return (
-                    <button
+                    <motion.button
                       key={plan.code}
                       type="button"
                       onClick={() => setSelectedPlan(plan.code)}
+                      whileHover={{ y: -2 }}
                       className={
                         isActive
-                          ? 'rounded-3xl border border-cyan bg-cyan-dim/15 p-5 text-left shadow-[0_20px_50px_-30px_color-mix(in_oklab,var(--cyan)_35%,transparent)]'
-                          : 'rounded-3xl border border-border bg-background/75 p-5 text-left'
+                          ? 'group rounded-2xl border-2 border-cyan bg-cyan-dim/15 backdrop-blur-sm p-7 text-left shadow-premium-lg hover:shadow-premium-lg transition-all'
+                          : 'group rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-7 text-left shadow-premium-sm hover:shadow-premium hover:border-cyan/30 hover:bg-background/80 transition-all hover-lift'
                       }
                     >
                       <div className="flex items-center justify-between gap-3">
-                        <p className="text-lg font-semibold text-text-primary">{plan.name}</p>
-                        {isActive ? <Badge className="bg-cyan text-obsidian">Selected</Badge> : null}
+                        <p className="text-xl font-bold text-foreground">{plan.name}</p>
+                        {isActive ? <Badge className="bg-cyan text-obsidian font-semibold">Selected</Badge> : null}
                       </div>
-                      <p className="mt-4 text-3xl font-semibold text-text-primary">${price.toLocaleString()}</p>
-                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-text-muted">
+                      <p className="mt-5 text-4xl font-bold text-foreground">${price.toLocaleString()}</p>
+                      <p className="mt-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                         per {billingInterval === 'annual' ? 'year' : 'month'}
                       </p>
-                      <p className="mt-4 text-sm leading-6 text-text-muted">{plan.description}</p>
-                      <div className="mt-5 rounded-2xl border border-border bg-card/70 p-3">
-                        <p className="text-xs text-text-muted">
+                      <p className="mt-5 text-base leading-7 text-muted-foreground">{plan.description}</p>
+                      <div className="mt-6 rounded-xl border border-border/40 bg-card/50 p-4 space-y-2">
+                        <p className="text-sm font-semibold text-foreground">
                           {(plan.limits.monthly_tx_limit ?? 0).toLocaleString()} tx / month
                         </p>
-                        <p className="mt-1 text-xs text-text-muted">
+                        <p className="text-sm font-semibold text-foreground">
                           {((plan.limits.auc_limit_usd ?? 0) / 1_000_000).toLocaleString()}M USD AUC limit
                         </p>
                       </div>
-                    </button>
+                    </motion.button>
                   )
                 })}
               </div>
 
               {selectedPlanRecord ? (
-                <div className="grid gap-4 rounded-3xl border border-border bg-background/75 p-5 lg:grid-cols-[0.9fr_1.1fr]">
+                <motion.div whileHover={{ y: -2 }} className="group grid gap-6 rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-7 lg:grid-cols-[0.9fr_1.1fr] shadow-premium-sm hover:shadow-premium hover:bg-background/90 transition-all hover-lift">
                   <div>
-                    <p className="text-sm font-semibold text-text-primary">Current selection</p>
-                    <p className="mt-2 text-2xl font-semibold text-text-primary">
+                    <p className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Current selection</p>
+                    <p className="mt-3 text-3xl font-bold text-foreground">
                       {selectedPlanRecord.name}
                     </p>
-                    <p className="mt-1 text-sm text-text-muted">
+                    <p className="mt-2 text-base font-semibold text-muted-foreground">
                       ${planPrice.toLocaleString()} per {billingInterval === 'annual' ? 'year' : 'month'}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3 items-start justify-end">
                     {selectedPlanRecord.features.slice(0, 8).map((feature) => (
-                      <Badge key={feature} className="bg-cyan-dim/20 text-cyan">
+                      <Badge key={feature} className="bg-cyan-dim/30 text-cyan font-medium">
                         {formatFeatureLabel(feature)}
                       </Badge>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ) : null}
             </section>
 
-            <div className="flex flex-col gap-4 rounded-3xl border border-border bg-background/70 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <motion.div whileHover={{ y: -2 }} className="group flex flex-col gap-6 rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-7 sm:flex-row sm:items-center sm:justify-between shadow-premium hover:shadow-premium-lg hover:bg-background/90 transition-all hover-lift">
               <div>
-                <p className="text-sm font-semibold text-text-primary">Continue to hosted Stripe Checkout</p>
-                <p className="mt-1 text-sm text-text-muted">
+                <p className="text-base font-bold text-foreground">Continue to hosted Stripe Checkout</p>
+                <p className="mt-2 text-sm text-muted-foreground">
                   Subscription and payment details are completed outside the app on Stripe.
                 </p>
               </div>
               <Button
                 type="button"
-                className="h-11 min-w-52 bg-cyan text-obsidian hover:bg-cyan/90"
+                className="h-12 min-w-56 bg-cyan text-obsidian font-semibold rounded-lg shadow-premium hover:shadow-premium-lg hover:bg-cyan/90 transition-all hover-lift"
                 onClick={handleSubmit}
                 disabled={isPending || isFinalizingCheckout}
               >
                 {isPending ? 'Saving...' : isFinalizingCheckout ? 'Confirming Stripe...' : 'Review and continue'}
-                {!isPending && !isFinalizingCheckout && <ChevronRight className="h-4 w-4" />}
+                {!isPending && !isFinalizingCheckout && <ChevronRight className="h-5 w-5 ml-2" />}
               </Button>
-            </div>
-          </CardContent>
-        </Card>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   )

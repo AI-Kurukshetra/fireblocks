@@ -119,10 +119,13 @@ function HeroMetric({
   })
 
   return (
-    <div className="rounded-[1.75rem] border border-border/60 bg-background/78 px-5 py-5 shadow-[0_18px_50px_-38px_rgba(2,132,199,0.35)]">
-      <p className="text-3xl font-semibold tracking-tight">{displayValue}</p>
-      <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-cyan">{label}</p>
-    </div>
+    <motion.div 
+      whileHover={{ y: -2 }}
+      className="group rounded-2xl border border-border/60 bg-card/50 px-6 py-6 shadow-premium hover-lift backdrop-blur-sm hover:bg-card/70 transition-all"
+    >
+      <p className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">{displayValue}</p>
+      <p className="mt-3 text-xs uppercase tracking-widest text-cyan/80 font-semibold">{label}</p>
+    </motion.div>
   )
 }
 
@@ -135,36 +138,36 @@ export function HomePage({
 
   return (
     <div className="pb-28">
-      <section className="grid min-h-[calc(100vh-4.5rem)] items-center gap-16 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-20 2xl:gap-24 2xl:px-14">
-        <div className="max-w-3xl">
+      <section className="grid min-h-[calc(100vh-4.5rem)] items-center gap-16 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24 2xl:gap-32 2xl:px-14">
+        <div className="max-w-3xl space-y-8">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-background/82 px-4 py-2 text-sm text-cyan">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-background/82 backdrop-blur-sm px-4 py-2 text-sm font-medium text-cyan hover:bg-cyan-dim/40 transition-colors">
               <Sparkles className="h-4 w-4" />
               Institutional digital asset operating system
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="mt-8 text-5xl font-semibold tracking-tight text-balance sm:text-6xl xl:text-7xl">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-balance leading-[1.05]">
               Digital asset operations that feel controlled, legible, and built for institutions.
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
+            <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl">
               Fireblocks brings custody, treasury movement, approvals, and audit readiness into one clear operating layer so teams stop stitching critical workflows together by hand.
             </p>
           </Reveal>
-          <Reveal delay={0.15} className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Button asChild size="lg" className="rounded-full px-7">
+          <Reveal delay={0.15} className="flex flex-col gap-3 sm:flex-row sm:items-center pt-2">
+            <Button asChild size="lg" className="rounded-full px-8 font-semibold h-12 shadow-premium hover:shadow-premium-lg hover-lift">
               <Link href={primaryHref}>
                 {isAuthenticated ? 'Open dashboard' : 'Request access'}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-5 w-5 ml-2" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-7">
+            <Button asChild size="lg" variant="outline" className="rounded-full px-8 font-semibold h-12 border-2 hover:bg-secondary/80">
               <Link href="/about">Explore the platform story</Link>
             </Button>
           </Reveal>
-          <Reveal delay={0.2} className="mt-12 grid gap-4 sm:grid-cols-3">
+          <Reveal delay={0.2} className="pt-6 grid gap-4 sm:grid-cols-3">
             {heroStats.map((stat) => (
               <HeroMetric key={stat.label} {...stat} />
             ))}
@@ -200,7 +203,7 @@ export function HomePage({
         </Reveal>
       </section>
 
-      <section className="px-4 py-24 sm:px-6 lg:px-10 2xl:px-14">
+      <section className="px-4 py-28 sm:px-6 lg:px-10 2xl:px-14">
         <Reveal>
           <SectionHeading
             eyebrow="Why teams buy in"
@@ -208,30 +211,31 @@ export function HomePage({
             description="The public experience should explain why the product matters to treasury, operations, compliance, and engineering without compressing everything into one card wall."
           />
         </Reveal>
-        <div className="mt-14 grid gap-6 xl:grid-cols-3">
+        <div className="mt-16 grid gap-8 xl:grid-cols-3">
           {valuePillars.map((pillar, index) => (
             <Reveal key={pillar.title} delay={index * 0.06}>
-              <Card className="h-full rounded-[2rem] border-border/60 bg-card/74 p-2">
-                <CardHeader className="gap-5 pb-2">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-[1.25rem] border border-cyan/20 bg-cyan-dim text-cyan">
-                    <pillar.icon className="h-6 w-6" />
-                  </span>
-                  <div className="space-y-3">
-                    <CardTitle className="text-2xl">{pillar.title}</CardTitle>
-                    <CardDescription className="text-base leading-7">
-                      {pillar.body}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
+              <motion.div
+                whileHover={{ y: -6 }}
+                className="group h-full rounded-3xl border border-border/60 bg-card/60 p-8 shadow-premium backdrop-blur-sm hover:bg-card/80 hover:shadow-premium-lg hover:border-cyan/30 transition-all duration-300 cursor-default"
+              >
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-cyan/30 bg-cyan-dim/50 text-cyan shadow-premium-sm group-hover:shadow-premium group-hover:border-cyan/50 transition-all">
+                  <pillar.icon className="h-8 w-8" />
+                </div>
+                <div className="mt-6 space-y-4">
+                  <h3 className="text-2xl font-bold tracking-tight leading-snug">{pillar.title}</h3>
+                  <p className="text-base leading-7 text-muted-foreground">
+                    {pillar.body}
+                  </p>
+                </div>
+              </motion.div>
             </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="px-4 py-24 sm:px-6 lg:px-10 2xl:px-14">
-        <div className="overflow-hidden rounded-[2.5rem] border border-border/60 bg-card/55 p-8 sm:p-10 xl:p-14">
-          <div className="grid items-start gap-12 xl:grid-cols-[0.85fr_1.15fr]">
+      <section className="px-4 py-28 sm:px-6 lg:px-10 2xl:px-14">
+        <div className="overflow-hidden rounded-3xl border border-border/60 bg-card/50 backdrop-blur-sm p-10 sm:p-12 xl:p-16 shadow-premium">
+          <div className="grid items-start gap-14 xl:grid-cols-[0.85fr_1.15fr]">
             <Reveal>
               <SectionHeading
                 eyebrow="Operating model"
@@ -239,20 +243,20 @@ export function HomePage({
                 description="Fireblocks organizes the workflow so each function gets context it can act on, instead of inheriting incomplete handoffs from another system."
               />
             </Reveal>
-            <div className="grid gap-5">
+            <div className="grid gap-6">
               {operatingModel.map((item, index) => (
                 <Reveal key={item.title} delay={index * 0.08}>
                   <motion.div
                     whileHover={{ y: -4 }}
-                    transition={{ duration: 0.2 }}
-                    className="rounded-[2rem] border border-border/60 bg-background/82 p-6"
+                    transition={{ duration: 0.3 }}
+                    className="group rounded-2xl border border-border/60 bg-background/70 backdrop-blur-sm p-7 shadow-premium-sm hover:shadow-premium hover:bg-background/90 hover:border-emerald/30 transition-all duration-300 cursor-default"
                   >
-                    <div className="flex items-start gap-4">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-[1rem] border border-emerald/20 bg-emerald-dim text-emerald">
-                        <item.icon className="h-5 w-5" />
+                    <div className="flex items-start gap-5">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-xl border-2 border-emerald/30 bg-emerald-dim/50 text-emerald flex-shrink-0 shadow-premium-sm group-hover:shadow-premium group-hover:border-emerald/50 transition-all">
+                        <item.icon className="h-6 w-6" />
                       </span>
-                      <div className="space-y-3">
-                        <h3 className="text-xl font-semibold">{item.title}</h3>
+                      <div className="space-y-3 flex-1">
+                        <h3 className="text-xl font-bold">{item.title}</h3>
                         <p className="text-base leading-7 text-muted-foreground">{item.body}</p>
                       </div>
                     </div>
@@ -264,14 +268,14 @@ export function HomePage({
         </div>
       </section>
 
-      <section className="grid gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 2xl:px-14">
+      <section className="grid gap-12 px-4 py-28 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 2xl:px-14">
         <Reveal>
           <SectionHeading
             eyebrow="What teams say"
             title="The strongest feedback is about clarity."
             description="Operators describe Fireblocks as infrastructure-like because the interface keeps approvals, policy signals, and evidence close together."
           />
-          <div className="mt-10 space-y-5">
+          <div className="mt-12 space-y-6">
             {[
               {
                 quote:
@@ -287,71 +291,75 @@ export function HomePage({
               },
             ].map((item, index) => (
               <Reveal key={item.name} delay={0.08 + index * 0.06}>
-                <Card className="rounded-[2rem] border-border/60 bg-card/74">
-                  <CardContent className="px-7 py-7">
-                    <p className="text-lg leading-8 text-foreground">"{item.quote}"</p>
-                    <div className="mt-6">
-                      <p className="font-medium">{item.name}</p>
+                <motion.div whileHover={{ y: -2 }} className="group rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm p-8 shadow-premium hover:shadow-premium hover:bg-card/75 transition-all duration-300">
+                  <p className="text-lg leading-8 text-foreground italic">"{item.quote}"</p>
+                  <div className="mt-6 flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-full bg-cyan-dim/50 border border-cyan/30" />
+                    <div>
+                      <p className="font-semibold text-foreground">{item.name}</p>
                       <p className="text-sm text-muted-foreground">{item.role}</p>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </motion.div>
               </Reveal>
             ))}
           </div>
         </Reveal>
 
         <Reveal delay={0.08}>
-          <Card className="rounded-[2rem] border-border/60 bg-card/74 px-6 sm:px-8">
-            <CardHeader className="px-0 pt-8">
-              <CardTitle className="text-2xl">Questions that come up early</CardTitle>
-              <CardDescription className="text-base leading-7">
-                The public pages should answer the core evaluation questions without forcing users into the product first.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="px-0 pb-8">
+          <div className="rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm p-8 sm:p-10 shadow-premium">
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold">Questions that come up early</h3>
+                <p className="mt-2 text-base leading-7 text-muted-foreground">
+                  The public pages should answer the core evaluation questions without forcing users into the product first.
+                </p>
+              </div>
               <Accordion type="single" collapsible>
                 {faqs.map((item) => (
                   <AccordionItem key={item.question} value={item.question}>
-                    <AccordionTrigger className="py-5 text-left text-base font-medium hover:no-underline">
+                    <AccordionTrigger className="py-5 text-left text-base font-semibold hover:no-underline text-foreground hover:text-cyan">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-base leading-7 text-muted-foreground">
+                    <AccordionContent className="text-base leading-7 text-muted-foreground pt-2">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </Reveal>
       </section>
 
-      <section className="px-4 pt-6 sm:px-6 lg:px-10 2xl:px-14">
+      <section className="px-4 pt-12 pb-16 sm:px-6 lg:px-10 2xl:px-14">
         <Reveal>
-          <div className="overflow-hidden rounded-[2.5rem] border border-cyan/20 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-cyan)_11%,var(--color-card)),color-mix(in_oklab,var(--color-emerald)_10%,var(--color-card)))] p-8 sm:p-10 xl:p-14">
-            <div className="grid gap-10 xl:grid-cols-[1fr_auto] xl:items-center">
-              <div className="max-w-3xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan">
+          <motion.div 
+            whileHover={{ y: -2 }}
+            className="overflow-hidden rounded-3xl border-2 border-cyan/20 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-cyan)_11%,var(--color-card)),color-mix(in_oklab,var(--color-emerald)_10%,var(--color-card)))] p-10 sm:p-12 xl:p-16 shadow-premium-lg hover:shadow-premium-lg hover:border-cyan/40 transition-all duration-300"
+          >
+            <div className="grid gap-12 xl:grid-cols-[1fr_auto] xl:items-center">
+              <div className="max-w-3xl space-y-6">
+                <p className="text-sm font-bold uppercase tracking-widest text-cyan">
                   Ready for a better first impression
                 </p>
-                <h2 className="mt-4 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+                <h2 className="text-5xl sm:text-6xl font-bold tracking-tight text-balance leading-[1.1]">
                   Move from a crowded product pitch to a cleaner institutional narrative.
                 </h2>
-                <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
+                <p className="text-base sm:text-lg leading-8 text-muted-foreground max-w-2xl">
                   Fireblocks should look like a serious operating system from the first screen, with space, rhythm, and enough visual structure to feel premium.
                 </p>
               </div>
-              <div className="flex items-center gap-4">
-                <Button asChild size="lg" className="rounded-full px-7">
+              <div className="flex items-center">
+                <Button asChild size="lg" className="rounded-full px-9 font-semibold h-12 shadow-premium hover:shadow-premium-lg hover-lift">
                   <Link href={primaryHref}>
                     {isAuthenticated ? 'Open dashboard' : 'Talk to the team'}
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-5 w-5 ml-2" />
                   </Link>
                 </Button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </Reveal>
       </section>
     </div>
